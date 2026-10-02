@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#a63b32" />
+  <meta name="description" content="一份简单又温柔的结婚祝福" />
+  <title>我们结婚了 💍</title>
+  <style>
+    :root {
+      --red: #a63b32;
+      --red-dark: #7f2d28;
+      --cream: #fff8ef;
+      --cream-2: #f7eadc;
+      --ink: #3e2d2a;
+      --muted: #8f746f;
+      --line: rgba(166, 59, 50, 0.16);
+      --shadow: 0 24px 80px rgba(93, 46, 40, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(214, 162, 144, 0.22), transparent 30%),
+        radial-gradient(circle at 85% 90%, rgba(166, 59, 50, 0.12), transparent 28%),
+        var(--cream);
+      color: var(--ink);
+      font-family: "Songti SC", "STSong", "Noto Serif SC", "PingFang SC", serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .page {
+      width: min(920px, 100%);
+      min-height: 100vh;
+      padding: 28px 20px;
+      display: grid;
+      place-items: center;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .page::before,
+    .page::after {
+      content: "囍";
+      position: absolute;
+      color: rgba(166, 59, 50, 0.05);
+      font-size: clamp(120px, 28vw, 300px);
+      line-height: 1;
+      z-index: -1;
+      user-select: none;
+    }
+
+    .page::before { left: -30px; top: -20px; transform: rotate(-8deg); }
+    .page::after { right: -30px; bottom: -20px; transform: rotate(8deg); }
+
+    .card {
+      width: min(700px, 100%);
+      border: 1px solid var(--line);
+      background: rgba(255, 250, 244, 0.78);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 32px;
+      box-shadow: var(--shadow);
+      padding: clamp(34px, 6vw, 64px) clamp(22px, 7vw, 72px);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border: 1px solid rgba(166, 59, 50, 0.11);
+      border-radius: 24px;
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      font-family: Georgia, "Times New Roman", serif;
+      letter-spacing: .32em;
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--red);
+      font-size: clamp(52px, 11vw, 96px);
+      letter-spacing: .08em;
+      line-height: 1.05;
+      font-weight: 700;
+    }
+
+    .ring {
+      margin: 18px 0 8px;
+      font-size: 28px;
+      filter: saturate(.8);
+    }
+
+    .subtitle {
+      margin: 0 auto 28px;
+      max-width: 420px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.8;
+      letter-spacing: .08em;
+    }
+
+    .divider {
+      width: 86px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--red), transparent);
+      margin: 0 auto 26px;
+      opacity: .75;
+    }
+
+    .blessings {
+      height: 220px;
+      overflow: hidden;
+      position: relative;
+      mask-image: linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent);
+      -webkit-mask-image: linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent);
+    }
+
+    .track {
+      display: flex;
+      flex-direction: column;
+      animation: scrollBlessings 28s linear infinite;
+      will-change: transform;
+    }
+
+    .blessing {
+      min-height: 74px;
+      display: grid;
+      place-items: center;
+      padding: 12px 18px;
+      font-size: clamp(18px, 3.4vw, 24px);
+      line-height: 1.55;
+      letter-spacing: .06em;
+      color: #5e403b;
+    }
+
+    .blessing strong {
+      color: var(--red-dark);
+      font-weight: 650;
+    }
+
+    .footer {
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: .16em;
+    }
+
+    .heart {
+      position: absolute;
+      color: rgba(166, 59, 50, 0.2);
+      font-size: 14px;
+      animation: float 8s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .heart.h1 { top: 10%; left: 9%; animation-delay: -2s; }
+    .heart.h2 { top: 20%; right: 8%; animation-delay: -5s; font-size: 10px; }
+    .heart.h3 { bottom: 14%; left: 12%; animation-delay: -1s; font-size: 9px; }
+    .heart.h4 { bottom: 8%; right: 12%; animation-delay: -4s; font-size: 16px; }
+
+    @keyframes scrollBlessings {
+      from { transform: translateY(0); }
+      to { transform: translateY(-50%); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(-4deg); opacity: .35; }
+      50% { transform: translateY(-14px) rotate(5deg); opacity: .75; }
+    }
+
+    @media (hover: hover) {
+      .blessings:hover .track { animation-play-state: paused; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .track, .heart { animation: none; }
+      .blessings { overflow-y: auto; mask-image: none; -webkit-mask-image: none; }
+    }
+
+    @media (max-width: 520px) {
+      body { overflow: auto; }
+      .page { padding: 18px 14px; }
+      .card { border-radius: 26px; padding-top: 44px; padding-bottom: 42px; }
+      .card::before { inset: 9px; border-radius: 19px; }
+      .blessings { height: 200px; }
+      .blessing { min-height: 70px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <span class="heart h1">♥</span>
+    <span class="heart h2">♥</span>
+    <span class="heart h3">♥</span>
+    <span class="heart h4">♥</span>
+
+    <section class="card" aria-label="结婚祝福">
+      <div class="eyebrow">WE ARE MARRIED</div>
+      <h1>我们结婚了</h1>
+      <div class="ring" aria-hidden="true">💍</div>
+      <p class="subtitle">从今天起，一屋两人，三餐四季。愿往后的每一天，都有笑意，也有彼此。</p>
+      <div class="divider"></div>
+
+      <div class="blessings" aria-label="滚动祝福语">
+        <div class="track" id="track">
+          <div class="blessing"><strong>新婚快乐，百年好合，永结同心。</strong></div>
+          <div class="blessing">愿你们朝朝暮暮有欢喜，岁岁年年共白头。</div>
+          <div class="blessing">愿柴米油盐有温度，平凡日子也闪闪发光。</div>
+          <div class="blessing">从心动到古稀，从初见到余生，都有彼此相伴。</div>
+          <div class="blessing">愿你们有说不完的话，也有不说话时的安心。</div>
+          <div class="blessing">愿往后的每一程，都有人并肩，也有人惦念。</div>
+          <div class="blessing">愿一生欢喜，不止今日；长长久久，不止朝夕。</div>
+          <div class="blessing"><strong>喜乐有分享，共度日月长。</strong></div>
+
+          <div class="blessing"><strong>新婚快乐，百年好合，永结同心。</strong></div>
+          <div class="blessing">愿你们朝朝暮暮有欢喜，岁岁年年共白头。</div>
+          <div class="blessing">愿柴米油盐有温度，平凡日子也闪闪发光。</div>
+          <div class="blessing">从心动到古稀，从初见到余生，都有彼此相伴。</div>
+          <div class="blessing">愿你们有说不完的话，也有不说话时的安心。</div>
+          <div class="blessing">愿往后的每一程，都有人并肩，也有人惦念。</div>
+          <div class="blessing">愿一生欢喜，不止今日；长长久久，不止朝夕。</div>
+          <div class="blessing"><strong>喜乐有分享，共度日月长。</strong></div>
+        </div>
+      </div>
+
+      <div class="footer">囍 · TO LOVE, LAUGHTER & FOREVER · 囍</div>
+    </section>
+  </main>
+</body>
+</html>
